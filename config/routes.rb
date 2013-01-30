@@ -1,4 +1,13 @@
 AMPTA::Application.routes.draw do
+  
+  root :to => "users#index"
+  
+  resources :projects do
+    resources :tickets
+  end
+  
+  resources :users
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
