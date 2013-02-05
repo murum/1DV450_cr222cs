@@ -2,10 +2,12 @@ AMPTA::Application.routes.draw do
   
   root :to => "users#index"
   
+  match 'projects/create' => 'projects#create', :as => :projects_create  
   resources :projects do
     resources :tickets
   end
   
+  match 'users/create' => 'users#create', :as => :users_create
   resources :users
   
   # The priority is based upon order of creation:

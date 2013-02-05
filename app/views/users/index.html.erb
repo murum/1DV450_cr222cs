@@ -1,0 +1,13 @@
+<h1>Alla användare</h1>
+
+<dl>
+<% @users.each do |user| %>
+
+	<dt><%= link_to user.first_name, user_path(user) %></dt>
+	
+	<% user.projects.each do |project| %>
+		<dd><%= link_to project.name, project_path(project) %></dd>
+	<% end %>
+	
+<% end %>
+</dl>

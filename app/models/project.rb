@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :user_id, :name, :description, :start_date, :end_date
+  
   belongs_to :user
   has_many :tickets
   
