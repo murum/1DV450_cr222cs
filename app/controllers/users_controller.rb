@@ -14,17 +14,17 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
   
-  def create
+  def new
     @user = User.new
-    @user.first_name = params[:first_name]
-    @user.last_name = params[:last_name]
-    @user.email = params[:email]
-    @user.password = params[:password]
+  end
+  
+  def create
+    @user = User.new(params[:user])
     
     if @user.save
       redirect_to user_path(@user)
     else
-      #error handling
+      render :action => "new"
     end
   end
   
