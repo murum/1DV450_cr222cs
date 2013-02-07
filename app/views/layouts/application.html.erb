@@ -7,6 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% flash.each do |key, value| %>
+  <div class="flash_<%= key %>"><%= value %></div>
+<% end %> 
+
+<% if signed_in? %>
+	<h1><%= link_to "Logga ut", signout_path %></h1
+<% else %>
+	<h1><%= link_to "Logga in", signin_path %></h1>
+<% end %>
 
 <%= yield %>
 

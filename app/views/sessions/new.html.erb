@@ -1,0 +1,12 @@
+<h1>Logga in</h1>
+<%= form_for(:session, url: sessions_path) do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Logga in" %>
+<% end %>
+
+<p>Ny användare? <%= link_to "Registrera dig nu!", signup_path %></p>

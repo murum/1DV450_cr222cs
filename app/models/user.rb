@@ -1,11 +1,15 @@
-# encoding: utf-8
+# -*- encoding : utf-8 -*-
 
 class User < ActiveRecord::Base
+  
+  has_secure_password
+  
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :email_confirmation
   
   has_many :projects
   has_many :tickets
   has_and_belongs_to_many :projects
+  
   
   validates :first_name, 
             :presence => { :message => "Du måste ange ett förnamn" }              
@@ -22,4 +26,6 @@ class User < ActiveRecord::Base
             :confirmation => { :message => "Lösenorden stämmer inte överens" }
   validates :password_confirmation,
             :presence => { :message => "Du måste ange lösenordet två gånger." }
+            
+  before_save { self.email.downcase! }
 end

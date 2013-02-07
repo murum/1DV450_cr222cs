@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- encoding : utf-8 -*-
 
 class Project < ActiveRecord::Base
   attr_accessible :user_id, :name, :description, :start_date, :end_date

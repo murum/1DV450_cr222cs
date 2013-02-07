@@ -1,4 +1,7 @@
+# -*- encoding : utf-8 -*-
 class UsersController < ApplicationController
+
+  layout 'application'
   
   def index
     @users = User.all()
@@ -22,6 +25,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     
     if @user.save
+      sign_in @user
+      flash[:success] = "Din användare skapades med emailen #{@user.email}"
       redirect_to user_path(@user)
     else
       render :action => "new"

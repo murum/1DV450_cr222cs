@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- encoding : utf-8 -*-
 
 class Ticket < ActiveRecord::Base
   attr_accessible :status_id, :user_id, :project_id, :name, :description
