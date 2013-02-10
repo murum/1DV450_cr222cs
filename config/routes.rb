@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 AMPTA::Application.routes.draw do
   
-  root :to => "users#index"
+  root :to => "welcome#index"
   
   match 'projects/create' => 'projects#create', :as => :projects_create  
   resources :projects do
@@ -9,9 +9,13 @@ AMPTA::Application.routes.draw do
   end
   
   match 'users/create' => 'users#create', :as => :users_create
-  resources :users
+  resources :users do
+    resources :tickets
+  end
   
   resources :sessions, only: [:new, :create, :destroy]
+  
+  match '/projects/:id' => 'projects#add_user', :via => [:post]
   
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

@@ -21,10 +21,11 @@ class TicketsController < ApplicationController
   
   def create
     @ticket = Ticket.new(params[:ticket])
-    @project = Project.find(params[:project_id])
+    @ticket.project_id = params[:project_id]
+    @project = Project.find params[:project_id]
     
     if @ticket.save
-      redirect_to url_for([@project, @ticket])
+      redirect_to project_path @project
     else
       render :action => "new"
     end

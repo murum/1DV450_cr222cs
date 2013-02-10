@@ -1,4 +1,48 @@
+<% user = User.find(@project.user_id) %>
+
 <h1><%= @project.name %></h1>
 <p><%= @project.description %></p>
 <p>Startdatum: <%= @project.start_date %></p>
 <p>Slutdatum: <%= @project.end_date %></p>
+
+<p>Projektägare: <a href='<%= user_path(user) %>'><%= user.first_name %> <%= user.last_name %></a></p>
+
+<ul>
+	<li>Projektmedlemmar
+		<ul>
+			<% @project.users.each do |u| %>
+				<% if is_owner @project.user_id, u.id %>
+					<li><%= u.first_name %> <%= u.last_name %> (Ägare)</li>
+				<% else %>
+					<li><%= u.first_name %> <%= u.last_name %></li>
+				<% end %>
+			<% end %>
+		</ul>
+	</li>
+</ul>
+
+<ul>
+	<li>
+		Tickets
+		<ul>
+			<% if @project.tickets.any? %>
+				<% @project.tickets.each do |ticket| %>
+					<li><%= link_to ticket.name, project_ticket_path(@project, ticket) %></li>
+				<% end %>
+			<% else %>
+				<li>Det finna inga tickets!</li>
+			<% end %>
+		</ul>
+	</li>
+	<li><%= link_to "Skapa Ticket", new_project_ticket_path(@project) %></li>
+</ul>
+
+
+<% if is_logged_as_owner(@project.user_id)  %>
+	<h2>Lägg till projektmedlem</h2>
+	<div id="users">
+		<%= render :partial => 'user' %>
+	</div>
+	
+	<%= link_to "Ta bort Projekt", project_path(@project), confirm: "Är du säker?", method: :delete %>
+<% end %>

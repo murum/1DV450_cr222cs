@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
 
 class Project < ActiveRecord::Base
-  attr_accessible :user_id, :name, :description, :start_date, :end_date
+  attr_accessible :user_id, :name, :description, :start_date, :end_date, :user_ids
   
   belongs_to :user
-  has_many :tickets
+  has_many :tickets, :dependent => :destroy
   
   has_and_belongs_to_many :users
   

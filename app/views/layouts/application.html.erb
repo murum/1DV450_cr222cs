@@ -7,17 +7,24 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% flash.each do |key, value| %>
-  <div class="flash_<%= key %>"><%= value %></div>
-<% end %> 
-
-<% if signed_in? %>
-	<h1><%= link_to "Logga ut", signout_path %></h1
-<% else %>
-	<h1><%= link_to "Logga in", signin_path %></h1>
-<% end %>
-
-<%= yield %>
+	<div class="container">
+		<div class='one-third column'>
+			<% if signed_in? %>
+				<%= render :template => 'users/signed_in' %>
+				<%= render :template => 'layouts/menu_signed_in' %>
+			<% else %>
+				<%= render :template => 'layouts/menu_not_signed_in' %>
+			<% end %>
+		</div>
+		<div class="two-thirds column">
+			<% flash.each do |key, value| %>
+			  <div class="flash_<%= key %>"><%= value %></div>
+			<% end %>
+			<div class="content">
+				<%= yield %> 
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

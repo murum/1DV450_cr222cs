@@ -1,0 +1,7 @@
+<div class="user">
+  <%= form_for :user do |f| %>
+    <%= f.select :user_id,
+    options_from_collection_for_select(User.all, :id, :email) %>
+    <%= f.submit "Spara" %>
+  <% end %>
+</div>

@@ -8,4 +8,12 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.first_name, class: "gravatar")
   end
   
+  def is_user (user_id)
+    if current_user
+      if current_user.id == user_id
+        return true
+      end
+    end
+  end
+  
 end
