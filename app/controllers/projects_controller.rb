@@ -16,7 +16,6 @@ class ProjectsController < ApplicationController
   end
   
   def new 
-    @users = User.all()
     @project = Project.new
   end
   
@@ -26,10 +25,16 @@ class ProjectsController < ApplicationController
   
   def create
     @project = Project.new(params[:project])
+    
     @project.user_id = current_user.id
     
     if @project.save
       @project.users << User.find(current_user.id)
+      params[:project][:usersToAdd].each do |u|
+        if(u.last == "1")
+          @project.users << User.find(u.first)
+        end
+      end
       redirect_to project_path(@project)
     else
       render :action => "new"
