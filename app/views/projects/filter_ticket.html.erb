@@ -25,8 +25,8 @@
 	<li>
 		Tickets
 		<ul>
-			<% if @project.tickets.any? %>
-				<% @project.tickets.each do |ticket| %>
+			<% if @tickets.any? %>
+				<% @tickets.each do |ticket| %>
 					<% 
 						status = Status.find(ticket.status_id)
 						statusname = status.status_name 

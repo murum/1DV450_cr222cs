@@ -1,0 +1,37 @@
+<% if @project.errors.any? %>
+	<div id="error_messages">
+		<h2>Fel vid skapandet av ett projekt.</h2>
+		<ul>
+			<% @project.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= form_for @project do |f| %>
+
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	
+	<%= f.label :description %>
+	<%= f.text_area :description %>
+	
+	<%= f.label :start_date %>
+	<%= f.date_select :start_date %>
+	
+	<%= f.label :end_date %>
+	<%= f.date_select :end_date %>
+	
+	<% User.where(["id != ? ", current_user.id]).all.each do |u| %>
+		<label><%= u.email %></label>
+		<% if(@project.users.any?{|user| user.id == u.id}) %>
+			<%= check_box "project[usersToAdd]", u.id, {checked: true}, u.id , "false" %>
+		<% else %>
+			<%= check_box "project[usersToAdd]", u.id, {checked: false}, u.id , "false" %>
+		<% end %>
+	<% end %>
+	
+	<%= f.submit "Skapa project"%>
+
+<% end %>

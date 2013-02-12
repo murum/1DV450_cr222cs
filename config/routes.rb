@@ -15,6 +15,7 @@ AMPTA::Application.routes.draw do
   
   resources :sessions, only: [:new, :create, :destroy]
   
+  match '/projects/:id/ticket_filter' => 'projects#filter_ticket', :via => :post
   match '/projects/:id' => 'projects#add_user', :via => [:post]
   
   match '/signup',  to: 'users#new'

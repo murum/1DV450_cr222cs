@@ -1,0 +1,3 @@
+<%= form_tag('/projects/' + params[:id] + '/ticket_filter', :method => :post) %>
+	<%= select_tag "status", options_from_collection_for_select(Status.all, "id", "status_name", 2) %>
+	<%= submit_tag "Filtrera tickets" %>
