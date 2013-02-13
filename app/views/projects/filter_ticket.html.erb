@@ -44,11 +44,6 @@
 
 
 <% if is_logged_as_owner(@project.user_id)  %>
-	<h2>Lägg till projektmedlem</h2>
-	<div id="users">
-		<%= render :partial => 'user' %>
-	</div>
-	
 	<%= link_to "Redigera Projekt", edit_project_path(@project.id), :class => "button" %>
 	<%= link_to "Ta bort Projekt", project_path(@project), confirm: "Är du säker?", method: :delete, :class => "button" %>
 <% end %>

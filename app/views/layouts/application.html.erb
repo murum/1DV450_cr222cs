@@ -17,9 +17,11 @@
 			<% end %>
 		</div>
 		<div class="two-thirds column">
+			
 			<% flash.each do |key, value| %>
 			  <div class="flash_<%= key %>"><%= value %></div>
 			<% end %>
+			
 			<div class="content">
 				<%= yield %> 
 			</div>
