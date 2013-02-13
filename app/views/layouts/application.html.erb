@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class='one-third column'>
+		<div class='three columns'>
 			<% if signed_in? %>
 				<%= render :template => 'users/signed_in' %>
 				<%= render :template => 'layouts/menu_signed_in' %>
@@ -16,7 +16,14 @@
 				<%= render :template => 'layouts/menu_not_signed_in' %>
 			<% end %>
 		</div>
-		<div class="two-thirds column">
+		
+		<% if signed_in? && current_user.projects.any? %>
+		<div class='three columns user_menu_details'>
+			<%= render :template => 'users/user_menu_details' %>
+		</div>
+		<% end %>
+		
+		<div class="offset-by-one eight columns main_content">
 			
 			<% flash.each do |key, value| %>
 			  <div class="flash_<%= key %>"><%= value %></div>

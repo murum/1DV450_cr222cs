@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
+    flash.keep[:success] = "Projektet togs bort"
     redirect_to projects_path
   end
   
@@ -53,7 +54,7 @@ class ProjectsController < ApplicationController
           end
         end
       end
-      
+      flash.keep[:success] = "Projektet skapades!"
       redirect_to project_path(@project)
     else
       render :action => "new"

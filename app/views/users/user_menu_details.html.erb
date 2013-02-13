@@ -1,0 +1,14 @@
+<% if current_user.projects.any? %>
+	<dl>
+		<dt>Projekt du medverkar i</dt>
+		<% current_user.projects.each do |p| %>
+			<dd><%= link_to p.name, project_path(p) %></dd>
+		<% end %>
+		<% if current_user.tickets.any? %>
+			<dt>Tickets du har tilldelade</dt>
+			<% current_user.tickets.each do |t| %>
+				<dd><%= link_to t.name, user_ticket_path(current_user, t) %></dd>
+			<% end %>
+		<% end %>
+	</dl>
+<% end %>

@@ -8,9 +8,97 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require base
  *= require layout
  *= require skeleton
  *= require_tree .
+ *= require_self
  */
+
+.mainNav, .user_menu_details {
+	background: rgba(0,0,0,.1);
+	padding: 5px;
+	border-radius: 5px;
+	border: 1px solid rgba(0,0,0,.3);
+	margin-top: 15px;
+}
+
+ul.mainNav {
+	font-size: 1.3em;
+}
+
+ul.mainNav li {
+	position: relative;
+}
+
+ul.mainNav li ul {
+	display: none;
+	position: absolute;
+	margin: 0 0 0 10px;
+	background: rgba(0,0,0,.9);
+	padding: 5px;
+	border-radius: 3px;
+}
+
+ul.mainNav li ul li a{
+	color: white;
+}
+
+ul.mainNav li ul li a:hover,
+ul.mainNav li ul li a:focus {
+	color: gray;
+}
+
+
+ul.mainNav li:hover ul {
+	display: block;
+	z-index: 10;
+}
+
+.user_menu_details {
+	margin-top: 82px;
+}
+
+.user_menu_details dl dt {
+	font-weight: bold;
+	margin: 15px 0 5px 0;
+}
+
+.user_menu_details dl dd a{
+	font-size: 0.9em;
+	text-decoration: none;
+	color: darkblue;
+}
+
+.user_menu_details dl dd a:before {
+	content: "∞ "
+}
+
+.user_menu_details dl dd a:hover{
+	color: darkgreen;
+}
+
+.user_menu_details dl dt:first-child {
+	margin-top: 0;
+}
+
+.flash_success {
+	background: rgba(32,178,91, .6);
+	padding: 10px;
+	border-radius: 5px;
+	margin: 20px 0;
+}
+
+.flash_notice {
+	background: rgba(32,119,178, .6);
+	padding: 10px;
+	border-radius: 5px;
+	margin: 20px 0;
+}
+
+.flash_error {
+	background: rgba(178,32,46, .6);
+	padding: 10px;
+	border-radius: 5px;
+	margin: 20px 0;
+}

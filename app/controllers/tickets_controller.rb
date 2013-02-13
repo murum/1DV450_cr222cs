@@ -10,8 +10,10 @@ class TicketsController < ApplicationController
   
   def destroy
     @ticket = Ticket.find(params[:id])
+    @project = Project.find(params[:project_id])
     @ticket.destroy
-    redirect_to tickets_path
+    flash.keep[:success] = "Du tog bort en ticket"
+    redirect_to project_path @project
   end
   
   def new 
@@ -25,6 +27,7 @@ class TicketsController < ApplicationController
     @project = Project.find params[:project_id]
     
     if @ticket.save
+      flash.keep[:success] = "Du skapade en ticket"
       redirect_to project_path @project
     else
       render :action => "new"

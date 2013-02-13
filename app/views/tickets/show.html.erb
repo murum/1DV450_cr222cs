@@ -1,2 +1,9 @@
+<% status = Status.find(@ticket.status_id) %>
+
 <h1><%= @ticket.name %></h1>
+<h2>Beskrivning</h2>
 <p><%= @ticket.description %></p>
+<h2>Status</h2>
+<p><%= status.status_name %></p>
+
+<%= link_to "Ta bort ticket", [Project.find(@ticket.project_id), @ticket], confirm: "Är du säker?", method: :delete, :class => "button" %>

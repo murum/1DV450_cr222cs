@@ -11,16 +11,18 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       sign_in user
-      redirect_to user, :notice => "Logged in"
+      flash.keep[:success] = "Du loggades in!"
+      redirect_to user
     else
-      flash.now[:error] = 'Inloggning misslyckades Email & Lösenords kombinationen var felaktig.' # Not quite right!
+      flash.now[:error] = 'Inloggning misslyckades Email & Lösenords kombinationen var felaktig.'
       render 'new'
     end
   end
   
   def destroy
+    flash.keep[:success] = "Du loggades ut!"
     sign_out
-    redirect_to root_url 
+    redirect_to root_url
   end
   
 end

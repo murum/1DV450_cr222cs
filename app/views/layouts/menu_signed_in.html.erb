@@ -3,7 +3,7 @@
 	<li>
 		<%= link_to "Konto", user_path(current_user) %>
 		<ul>
-			<%= link_to "Profil", user_path(current_user) %>
+			<li><%= link_to "Profil", user_path(current_user) %></li>
 			<li><a href="#">Inställningar</a></li>
 		</ul>
 	</li>
@@ -16,18 +16,5 @@
 	</li>
 	<li><%= link_to "Medlemmar", users_path %></li>
 </ul>
-
-<% if current_user.projects.any? %>
-	<dl>
-		<dt>Projekt du medverkar i</dt>
-		<% current_user.projects.each do |p| %>
-			<dd><%= link_to p.name, project_path(p) %></dd>
-		<% end %>
-		<dt>Tickets du har tilldelade</dt>
-		<% current_user.tickets.each do |t| %>
-			<dd><%= link_to t.name, user_ticket_path(current_user, t) %></dd>
-		<% end %>
-	</dl>
-<% end %>
 
 <a class='button' href='<%= signout_path %>'>Logga ut</a>
