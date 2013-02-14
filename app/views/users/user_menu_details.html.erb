@@ -7,7 +7,7 @@
 		<% if current_user.tickets.any? %>
 			<dt>Tickets du har tilldelade</dt>
 			<% current_user.tickets.each do |t| %>
-				<dd><%= link_to t.name, user_ticket_path(current_user, t) %></dd>
+				<dd><%= link_to t.name, project_ticket_path(Project.find(t.project_id), t) %></dd>
 			<% end %>
 		<% end %>
 	</dl>

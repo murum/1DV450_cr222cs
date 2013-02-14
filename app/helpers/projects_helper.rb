@@ -33,6 +33,14 @@ module ProjectsHelper
     end
   end
   
+  def is_logged_as_owner(project_owner_id)
+    if current_user
+      if current_user.id == project_owner_id
+        return true
+      end
+    end
+  end
+  
   def is_owner(owner_id, user_id)
     if owner_id == user_id
       return true

@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 class ProjectsController < ApplicationController
   
+  before_filter :signed_in
+  
   def index
     @projects = Project.all()
     @userProjects = get_member_projects(@projects)
